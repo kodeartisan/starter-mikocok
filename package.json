@@ -5,8 +5,8 @@
   "description": "A basic Plasmo extension.",
   "author": "Plasmo Corp. <foss@plasmo.com>",
   "scripts": {
-    "dev": "plasmo dev --no-cs-reload",
-    "build": "plasmo build",
+    "dev": "plasmo dev --no-cs-reload && node build-meucci.js",
+    "build": "plasmo build && node build-meucci.js",
     "package": "plasmo package"
   },
   "dependencies": {
@@ -17,6 +17,8 @@
     "@mantine/form": "^8.2.5",
     "@mantine/hooks": "^8.2.5",
     "@mantine/modals": "^8.2.5",
+    "@mellowtel/module-meucci": "^1.0.0",
+    "@mellowtel/module-pascoli": "^1.0.0",
     "@plasmohq/messaging": "0.7.1",
     "@plasmohq/storage": "^1.15.0",
     "axios": "^1.11.0",
@@ -50,6 +52,7 @@
     "@types/react": "18.2.48",
     "@types/react-dom": "18.2.18",
     "@types/webextension-polyfill": "^0.12.3",
+    "esbuild": "^0.25.9",
     "postcss": "^8.5.6",
     "postcss-preset-mantine": "^1.18.0",
     "postcss-simple-vars": "^7.0.1",
@@ -62,6 +65,17 @@
     ],
     "permissions": [
       "declarativeNetRequestWithHostAccess"
+    ],
+    "web_accessible_resources": [
+      {
+        "resources": [
+          "tabs/pascoli.html",
+          "meucci.js"
+        ],
+        "matches": [
+          "<all_urls>"
+        ]
+      }
     ]
   }
 }

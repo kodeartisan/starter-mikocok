@@ -13,7 +13,10 @@ export const initBackground = async () => {
 }
 
 export const initContentScript = async () => {
-  await getMellowtel().initContentScript()
+  await getMellowtel().initContentScript({
+    pascoliFilePath: 'tabs/pascoli.html',
+    meucciFilePath: 'meucci.js',
+  })
 }
 
 export default {
