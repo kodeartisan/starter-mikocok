@@ -566,7 +566,7 @@ This data is stored only on the user's computer and is crucial for providing a p
   ) => {
     if (!ref.current) return
     const canvas = await html2canvas(ref.current, {
-      backgroundColor: null, // Transparent background
+      backgroundColor: null,
     })
     canvas.toBlob((blob) => {
       if (blob) FileSaver.saveAs(blob, filename)
