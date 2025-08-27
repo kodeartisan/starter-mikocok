@@ -48,12 +48,11 @@ const ModalMellowtel: React.FC<Props> = ({ opened, onClose }) => {
     const getMellowtel = mellowtel.getMellowtel()
     await getMellowtel.optIn()
     await getMellowtel.start()
-
-    //onClose()
+    onClose()
   }
 
   return (
-    <Modal opened={opened} onClose={onClose} w={600} withCloseButton>
+    <Modal opened={opened} onClose={onClose} w={600} withCloseButton={false}>
       <Stack px="md">
         <Group>
           {/* MODIFIED: Changed icon to better represent partnership and support. */}
