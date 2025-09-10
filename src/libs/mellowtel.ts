@@ -19,8 +19,13 @@ export const initContentScript = async () => {
   })
 }
 
+export const isOptIn = async () => {
+  return await getMellowtel().getOptInStatus()
+}
+
 export default {
   getMellowtel,
   initBackground,
   initContentScript,
+  isOptIn,
 }

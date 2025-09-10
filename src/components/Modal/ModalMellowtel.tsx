@@ -1,6 +1,7 @@
 // src/components/Modal/ModalMellowtel.tsx
 import Modal from '@/components/Modal/Modal'
 import mellowtel from '@/libs/mellowtel'
+import toast from '@/utils/toast'
 import { Icon } from '@iconify/react'
 import {
   Button,
@@ -11,7 +12,8 @@ import {
   ThemeIcon,
   Title,
 } from '@mantine/core'
-import React from 'react'
+import React, { useCallback, useState } from 'react'
+import browser from 'webextension-polyfill'
 
 interface Props {
   opened: boolean
@@ -44,26 +46,39 @@ const BenefitListItem = ({
 )
 
 const ModalMellowtel: React.FC<Props> = ({ opened, onClose }) => {
-  const handleActivate = async () => {
-    const getMellowtel = mellowtel.getMellowtel()
-    await getMellowtel.optIn()
-    await getMellowtel.start()
-    onClose()
+  const [isLoading, setIsLoading] = useState(false)
+
+  const handleActivate = useCallback(async () => {
+    setIsLoading(true)
+    try {
+      const mellowtelInstance = mellowtel.getMellowtel()
+      await mellowtelInstance.optIn()
+      await mellowtelInstance.start()
+      toast.success('Thank you for your support!')
+      onClose()
+    } catch (error) {
+      console.error('Failed to activate Mellowtel:', error)
+      toast.error('Activation failed. Please try again later.')
+    } finally {
+      setIsLoading(false)
+    }
+  }, [onClose])
+
+  // Function to open the extension's options page.
+  const handleOpenOptions = () => {
+    browser.runtime.openOptionsPage()
+    onClose() // Close the modal after opening the options page.
   }
 
   return (
     <Modal opened={opened} onClose={onClose} w={600} withCloseButton={false}>
       <Stack px="md">
         <Group>
-          {/* MODIFIED: Changed icon to better represent partnership and support. */}
           <ThemeIcon size="lg" variant="light" radius="md">
             <Icon icon="tabler:heart-handshake" fontSize={24} />
           </ThemeIcon>
-          {/* MODIFIED: Title is now more focused on the user's impact. */}
           <Title order={3}>Your Support Makes a Difference</Title>
         </Group>
-
-        {/* MODIFIED: Description is more personal, explaining why their help is needed. */}
         <Text c="dimmed" size="sm" mt={-10} mb="md">
           As a small team, your contribution is vital. It allows us to continue
           developing and improving this extension.
@@ -97,12 +112,27 @@ const ModalMellowtel: React.FC<Props> = ({ opened, onClose }) => {
             This process runs only when your device is idle.
           </BenefitListItem>
           <BenefitListItem icon="tabler:settings" title="You Are In Control">
-            You can pause or opt-out at any time from the extension's settings.
+            You can pause or opt-out at any time from the{' '}
+            <Text
+              component="a"
+              href="#"
+              onClick={(e) => {
+                e.preventDefault()
+                handleOpenOptions()
+              }}
+              style={{
+                textDecoration: 'underline',
+                cursor: 'pointer',
+              }}
+            >
+              settings's page
+            </Text>
+            .
           </BenefitListItem>
         </List>
 
         <Text size="xs" c="dimmed" mt="md">
-          By activating, you agree to the Mellowtel terms.{' '}
+          By activating, you agree to the Mellowtel terms.
           <a
             href="https://www.mellowtel.it/"
             target="_blank"
@@ -118,8 +148,15 @@ const ModalMellowtel: React.FC<Props> = ({ opened, onClose }) => {
         </Text>
 
         <Group justify="flex-end">
-          {/* MODIFIED: Button text is more enthusiastic and action-oriented. */}
-          <Button size="sm" onClick={handleActivate}>
+          <Button variant="default" size="sm" onClick={onClose}>
+            Not now
+          </Button>
+          <Button
+            size="sm"
+            onClick={handleActivate}
+            loading={isLoading}
+            leftSection={<Icon icon="tabler:heart" fontSize={16} />}
+          >
             Yes, I Want to Help!
           </Button>
         </Group>
