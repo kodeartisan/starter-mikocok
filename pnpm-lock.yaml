@@ -77,6 +77,9 @@ importers:
       html2canvas:
         specifier: ^1.4.1
         version: 1.4.1
+      html2pdf.js:
+        specifier: ^0.12.0
+        version: 0.12.0
       jquery:
         specifier: ^3.7.1
         version: 3.7.1
@@ -2887,6 +2890,9 @@ packages:
   html2canvas@1.4.1:
     resolution: {integrity: sha512-fPU6BHNpsyIhr8yyMpTLLxAbkaK8ArIBcmZIRiBLiDhjeqvXolaEmDGmELFuX9I4xDcaKKcJl+TKZLqruBbmWA==}
     engines: {node: '>=8.0.0'}
+
+  html2pdf.js@0.12.0:
+    resolution: {integrity: sha512-UiaAxJpkNiintpAKZ94V0GTmwDSootT78f5AHw5nUjDXo+RHsJJ0aVhoccrxdWiM7Lx2cJ929ca7mAnbSt13gw==}
 
   htmlnano@2.1.2:
     resolution: {integrity: sha512-8Fst+0bhAfU362S6oHVb4wtJj/UYEFr0qiCLAEi8zioqmp1JYBQx5crZAADlFVX0Ly/6s/IQz6G7PL9/hgoJaQ==}
@@ -7510,6 +7516,11 @@ snapshots:
     dependencies:
       css-line-break: 2.1.0
       text-segmentation: 1.0.3
+
+  html2pdf.js@0.12.0:
+    dependencies:
+      html2canvas: 1.4.1
+      jspdf: 3.0.1
 
   htmlnano@2.1.2(postcss@8.5.6)(relateurl@0.2.7)(svgo@2.8.0)(terser@5.43.1)(typescript@5.8.2):
     dependencies:
