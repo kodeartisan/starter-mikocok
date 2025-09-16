@@ -19,6 +19,8 @@ import RobotsTxtGenerator from '@/features/generator/RobotsTxtGenerator'
 import SitemapXmlGenerator from '@/features/generator/SitemapXmlGenerator'
 import JpgCompress from '@/features/image/JpgCompress'
 import JpgToPng from '@/features/image/JpgToPng'
+import ResizeImage from '@/features/image/ResizeImage'
+import PdfMerge from '@/features/pdf/PdfMerge'
 import useWindowMessage from '@/hooks/useWindowMessage'
 import { useDisclosure } from '@mantine/hooks'
 
@@ -40,7 +42,7 @@ const Tool: React.FC = () => {
 
   return (
     <MantineProvider theme={theme}>
-      <Base64EncodeDecode />
+      <PdfMerge />
       <ToastProvider />
       <ModalMellowtel
         opened={showModalMellowtel}
