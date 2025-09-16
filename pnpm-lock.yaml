@@ -134,6 +134,9 @@ importers:
       xlsx:
         specifier: ^0.18.5
         version: 0.18.5
+      xml-js:
+        specifier: ^1.6.11
+        version: 1.6.11
       yaml:
         specifier: ^2.8.1
         version: 2.8.1
@@ -4409,6 +4412,10 @@ packages:
     engines: {node: '>=0.8'}
     hasBin: true
 
+  xml-js@1.6.11:
+    resolution: {integrity: sha512-7rVi2KMfwfWFl+GpPg6m80IVMWXLRjO+PxTq7V2CDhoGak0wzYzFgUY2m4XJ47OGdXd8eLE8EmwfAmdjw7lC1g==}
+    hasBin: true
+
   xmlcreate@2.0.4:
     resolution: {integrity: sha512-nquOebG4sngPmGPICTS5EnxqhKbCmz5Ox5hsszI2T6U5qdrJizBc+0ilYSEjTSzU0yZcmvppztXe/5Al5fUwdg==}
 
@@ -8619,8 +8626,7 @@ snapshots:
     optionalDependencies:
       '@parcel/watcher': 2.5.1
 
-  sax@1.4.1:
-    optional: true
+  sax@1.4.1: {}
 
   scheduler@0.23.2:
     dependencies:
@@ -9058,6 +9064,10 @@ snapshots:
       ssf: 0.11.2
       wmf: 1.0.2
       word: 0.3.0
+
+  xml-js@1.6.11:
+    dependencies:
+      sax: 1.4.1
 
   xmlcreate@2.0.4: {}
 
