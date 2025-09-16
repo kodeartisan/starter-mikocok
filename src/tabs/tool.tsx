@@ -8,6 +8,7 @@ import LayoutTool from '@/components/Layout/LayoutTool'
 import ModalMellowtel from '@/components/Modal/ModalMellowtel'
 import ToastProvider from '@/components/Toast/ToastProvider'
 import { Action } from '@/constants'
+import Base64EncodeDecode from '@/features/dev/Base64EncodeDecode'
 import SqlFormatter from '@/features/dev/SqlFormatter'
 import UrlParser from '@/features/dev/UrlParser'
 import CssGradientGenerator from '@/features/generator/CssGradientGenerator'
@@ -39,7 +40,7 @@ const Tool: React.FC = () => {
 
   return (
     <MantineProvider theme={theme}>
-      <SqlFormatter />
+      <Base64EncodeDecode />
       <ToastProvider />
       <ModalMellowtel
         opened={showModalMellowtel}
