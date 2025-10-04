@@ -5,46 +5,35 @@ import ScreenshotWrapper from '@/components/Promo/ScreenshotWrapper'
 import theme from '@/libs/theme'
 import { Icon } from '@iconify/react'
 import {
-  Avatar,
+  ActionIcon,
   Badge,
   Button,
   Card,
   Center,
-  Checkbox,
   Code,
   Container,
   CopyButton,
   Grid,
   Group,
-  List,
   MantineProvider,
   Paper,
-  Radio,
-  Select,
   Stack,
   Tabs,
-  TagsInput,
   Text,
   Textarea,
+  TextInput,
   ThemeIcon,
   Title,
 } from '@mantine/core'
 import '@mantine/core/styles.css'
-import { DatePickerInput } from '@mantine/dates'
-import '@mantine/dates/styles.css'
-import { PRIMARY_ICON } from '@/constants'
-import FileSaver from 'file-saver'
-import html2canvas from 'html2canvas'
-import React, { useRef } from 'react'
+import 'mantine-datatable/styles.layer.css'
+import React from 'react'
 
-// English: Using a darker gradient that matches the landing page's teal-to-lime theme with darker shades for a more prominent look.
+// English: Using a red gradient for a bold and energetic look.
 const PROMO_GRADIENT_BACKGROUND =
-  'linear-gradient(135deg, var(--mantine-color-teal-8), var(--mantine-color-lime-8))'
+  'linear-gradient(135deg, var(--mantine-color-red-8), var(--mantine-color-orange-8))'
 
-// --- Marquee Promo Tiles (1280x800px) --- //
-
-// English: [MODIFIED] Component dimensions changed to 1280x800.
-// English: The feature card grid has been changed to a vertical stack.
+// --- Marquee Promo Tile (1280x800px) ---
 const MarqueeTileFeatureShowcase = () => (
   <Paper
     w={1280}
@@ -53,115 +42,93 @@ const MarqueeTileFeatureShowcase = () => (
     radius="lg"
     p={60}
     style={{
-      // English: Applying the consistent dark theme gradient.
       background: PROMO_GRADIENT_BACKGROUND,
     }}
   >
     <Stack h="100%" justify="center">
-      <Grid align="center" gutter={40}>
+      <Grid align="center">
         <Grid.Col span={5}>
           <Stack>
             <ThemeIcon
               size={90}
               radius="xl"
               variant="gradient"
-              gradient={{ from: 'teal', to: 'lime' }}
+              gradient={{ from: 'red', to: 'orange' }}
             >
-              <Icon icon={PRIMARY_ICON} fontSize={62} />
+              <Icon icon="tabler:file-stack" fontSize={70} />
             </ThemeIcon>
-            <Title order={1} fz={44} lh={1.2} c="white">
+            <Title fz={48} lh={1.2} c="white">
               {' '}
-              The Ultimate WhatsApp Backup & Export Tool{' '}
+              PDF Merge & Toolkit{' '}
             </Title>
-            <Text size="xl" c="white" fw={500} mt="md">
+            <Title order={2} c="white" fw={500} mt="md">
               {' '}
-              Securely save your conversations and media in multiple formats
-              with advanced filtering.{' '}
-            </Text>
+              Combine, organize, and compress your PDF files securely in your
+              browser. No uploads, no waiting.{' '}
+            </Title>
           </Stack>
         </Grid.Col>
-        <Grid.Col span={4}>
-          {/* English: Changed the Grid layout to a Stack for a vertical list of features. */}
+        <Grid.Col span={5}>
           <Stack gap="lg">
             <Card withBorder shadow="lg" p="lg">
               <Group>
                 <ThemeIcon
                   variant="gradient"
-                  gradient={{ from: 'teal', to: 'lime' }}
+                  gradient={{ from: 'red', to: 'orange' }}
                   radius="xl"
-                  size={36}
+                  size={60}
                 >
-                  <Icon icon="tabler:files" fontSize={22} />
+                  <Icon icon="tabler:drag-drop" fontSize={45} />
                 </ThemeIcon>
-                <Text size="lg" fw={700}>
+                <Title order={1} fw={700}>
                   {' '}
-                  Multiple Formats{' '}
-                </Text>
+                  Drag, Drop, Done{' '}
+                </Title>
               </Group>
-              <Text size="sm" c="gray.6" fw={500} mt="xs">
+              <Title size={26} c="gray.7" fw={500} mt="md">
                 {' '}
-                Export to PDF, Excel, CSV, JSON, and more.{' '}
-              </Text>
+                Effortlessly combine multiple PDFs.{' '}
+              </Title>
             </Card>
             <Card withBorder shadow="lg" p="lg">
               <Group>
                 <ThemeIcon
                   variant="gradient"
-                  gradient={{ from: 'teal', to: 'lime' }}
+                  gradient={{ from: 'red', to: 'orange' }}
                   radius="xl"
-                  size={36}
+                  size={60}
                 >
-                  <Icon icon="tabler:shield-lock" fontSize={22} />
+                  <Icon icon="tabler:arrows-sort" fontSize={45} />
                 </ThemeIcon>
-                <Text fw={700} size="lg">
+                <Title order={1} fw={700}>
                   {' '}
-                  100% Private{' '}
-                </Text>
+                  Reorder & Delete{' '}
+                </Title>
               </Group>
-              <Text size="sm" c="gray.6" fw={500} mt="xs">
+              <Title size={26} c="gray.7" fw={500} mt="md">
                 {' '}
-                Your data never leaves your computer.{' '}
-              </Text>
+                Organize pages exactly how you want.{' '}
+              </Title>
             </Card>
             <Card withBorder shadow="lg" p="lg">
               <Group>
                 <ThemeIcon
                   variant="gradient"
-                  gradient={{ from: 'teal', to: 'lime' }}
+                  gradient={{ from: 'red', to: 'orange' }}
                   radius="xl"
-                  size={36}
+                  size={60}
                 >
-                  <Icon icon="tabler:photo-video" fontSize={22} />
+                  <Icon icon="tabler:shield-lock" fontSize={45} />
                 </ThemeIcon>
-                <Text fw={700} size="lg">
+                <Title order={1} fw={700}>
                   {' '}
-                  Include Media{' '}
-                </Text>
+                  Secure & Private{' '}
+                </Title>
               </Group>
-              <Text size="sm" c="gray.6" fw={500} mt="xs">
+              <Title size={26} c="gray.7" fw={500} mt="md">
                 {' '}
-                Save images, videos, and documents.{' '}
-              </Text>
-            </Card>
-            <Card withBorder shadow="lg" p="lg">
-              <Group>
-                <ThemeIcon
-                  variant="gradient"
-                  gradient={{ from: 'teal', to: 'lime' }}
-                  radius="xl"
-                  size={36}
-                >
-                  <Icon icon="tabler:filter" fontSize={22} />
-                </ThemeIcon>
-                <Text fw={700} size="lg">
-                  {' '}
-                  Advanced Filtering{' '}
-                </Text>
-              </Group>
-              <Text size="sm" c="gray.6" fw={500} mt="xs">
-                {' '}
-                Filter by date range and keywords.{' '}
-              </Text>
+                All processing happens on your device.{' '}
+              </Title>
             </Card>
           </Stack>
         </Grid.Col>
@@ -170,175 +137,113 @@ const MarqueeTileFeatureShowcase = () => (
   </Paper>
 )
 
-// --- Feature Mockups for Screenshots --- //
-
-// English: These components represent the light-themed UI and remain unchanged.
-const FeatureMockupExportFormats = () => (
-  <Card withBorder radius="md" p="xl" w={620}>
+// --- Feature Mockups for Screenshots ---
+const FeatureMockupPdfMergeUI = () => (
+  <Card withBorder radius="md" p="xl" w={500}>
     <Stack>
-      <Title order={5}>Export Options</Title>
+      <Title order={4}>Effortless PDF Merging</Title>
       <Text c="dimmed" size="sm">
         {' '}
-        Choose your desired format for the chat backup.{' '}
+        Simply drag and drop your files to start combining them instantly.{' '}
       </Text>
-      <Radio.Group label="Format" defaultValue="pdf">
-        <Group mt="xs">
-          <Radio value="html" label="HTML (.zip)" />
-          <Radio value="pdf" label="PDF" />
-          <Radio value="xlsx" label="Excel" />
-          <Radio value="csv" label="CSV" />
-        </Group>
-      </Radio.Group>
-      <Button mt="lg" leftSection={<Icon icon="tabler:download" />}>
-        {' '}
-        Start Backup{' '}
-      </Button>
-    </Stack>
-  </Card>
-)
-
-const FeatureMockupAdvancedFiltering = () => (
-  <Card withBorder radius="md" p="xl" w={620}>
-    <Stack>
-      <Title order={5}>Advanced Filtering</Title>
-      <Text c="dimmed" size="sm">
-        {' '}
-        Pinpoint the exact messages you need.{' '}
-      </Text>
-      <DatePickerInput
-        type="range"
-        label="Filter by Date Range"
-        placeholder="Pick start and end dates"
-        value={[new Date(2025, 6, 10), new Date(2025, 6, 24)]}
-        disabled
-      />
-      <TagsInput
-        label="Filter by Keywords"
-        placeholder="Add keywords"
-        description="Only export messages containing these words."
-        value={['contract', 'invoice', 'approved']}
-        disabled
-      />
-    </Stack>
-  </Card>
-)
-
-const FeatureMockupMediaBackup = () => (
-  <Card withBorder radius="md" p="xl" w={620}>
-    <Stack>
-      <Title order={5}>Include Media in Your Backup</Title>
-      <Text c="dimmed" size="sm">
-        {' '}
-        Don't just save text—save the whole story.{' '}
-      </Text>
-      <Checkbox.Group
-        label="Include Message Types"
-        defaultValue={['chat', 'image', 'video']}
-      >
-        <Group mt="xs">
-          <Checkbox value="chat" label="Text" />
-          <Checkbox value="image" label="Images" />
-          <Checkbox value="video" label="Videos" />
-          <Checkbox value="document" label="Documents" />
-        </Group>
-      </Checkbox.Group>
-    </Stack>
-  </Card>
-)
-
-const FeatureMockupPrivacy = () => (
-  <Card withBorder radius="md" p="xl" w={620}>
-    <Stack align="center">
-      <ThemeIcon size={60} radius="xl" variant="light" color="teal">
-        <Icon icon="tabler:shield-lock" fontSize={32} />
-      </ThemeIcon>
-      <Title order={4} mt="md">
-        {' '}
-        100% Private & Secure{' '}
-      </Title>
-      <Text c="dimmed" size="sm" ta="center">
-        {' '}
-        Your data is processed locally and never leaves your computer.{' '}
-      </Text>
-      <List
-        mt="lg"
-        spacing="sm"
-        size="sm"
-        center
-        icon={
-          <ThemeIcon color="teal" size={24} radius="xl">
-            <Icon icon="tabler:check" fontSize={14} />
-          </ThemeIcon>
-        }
-      >
-        <List.Item>
-          {' '}
-          <b>100% Local Processing:</b> Your conversations are never uploaded.{' '}
-        </List.Item>
-        <List.Item>
-          {' '}
-          <b>No Cloud Sync:</b> We have no access to your files or chats.{' '}
-        </List.Item>
-        <List.Item>
-          {' '}
-          <b>You Are in Control:</b> Save your backups on your own device.{' '}
-        </List.Item>
-      </List>
-    </Stack>
-  </Card>
-)
-
-const FeatureMockupSimpleInterface = () => (
-  <Card withBorder radius="md" p="xl" w={620}>
-    <Stack>
-      <Title order={4}>Start Your Backup in Seconds</Title>
-      <Text c="dimmed" size="sm">
-        {' '}
-        Our intuitive interface makes saving your chats effortless.{' '}
-      </Text>
-      <Select
+      <Paper
         mt="md"
-        label="1. Select Chat"
-        placeholder="Click to choose a conversation"
-        data={[{ value: 'jane', label: 'Jane Doe' }]}
-        defaultValue="jane"
-        disabled
-        leftSection={
-          <Avatar
-            src="https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/avatars/avatar-5.png"
-            size="sm"
-          />
-        }
-      />
-      <Select
-        label="2. Choose Date Range"
-        placeholder="Select a date range"
-        data={[{ value: 'all', label: 'All Time' }]}
-        defaultValue="all"
-        disabled
-      />
-      <Radio.Group label="3. Select Format" defaultValue="pdf">
-        <Group mt="xs">
-          <Radio value="pdf" label="PDF" />
-          <Radio value="xlsx" label="Excel" />
-          <Radio value="html" label="HTML (.zip)" />
-        </Group>
-      </Radio.Group>
-      <Button mt="lg" size="md" leftSection={<Icon icon="tabler:download" />}>
-        {' '}
-        Start Backup{' '}
+        withBorder
+        p="xl"
+        radius="md"
+        style={{ borderStyle: 'dashed' }}
+      >
+        <Center>
+          <Stack align="center">
+            <Icon icon="tabler:upload" fontSize={50} />
+            <Text>Drag & drop PDF files here</Text>
+            <Text size="xs" c="dimmed">
+              {' '}
+              or click to select files{' '}
+            </Text>
+          </Stack>
+        </Center>
+      </Paper>
+      <Button mt="sm" color="red">
+        Merge PDFs
       </Button>
     </Stack>
   </Card>
 )
 
-// --- New Reusable Marquee Tile for Feature Details ---
+const FeatureMockupReorderPages = () => (
+  <Card withBorder radius="md" p="xl" w={500}>
+    <Stack>
+      <Title order={4}>Organize Pages Your Way</Title>
+      <Text c="dimmed" size="sm">
+        {' '}
+        After adding files, drag pages to reorder them before merging.{' '}
+      </Text>
+      <Grid mt="md" gutter="sm">
+        {[1, 2, 3, 4].map((i) => (
+          <Grid.Col span={6} key={i}>
+            <Paper withBorder p="sm" radius="sm">
+              <Stack align="center">
+                <Icon icon="tabler:file-text" fontSize={40} />
+                <Text size="xs">Page {i}</Text>
+              </Stack>
+            </Paper>
+          </Grid.Col>
+        ))}
+      </Grid>
+    </Stack>
+  </Card>
+)
+
+const FeatureMockupExtraTools = () => (
+  <Card withBorder radius="md" p="xl" w={500}>
+    <Stack>
+      <Title order={4}>More Than Just Merging (Pro)</Title>
+      <Text c="dimmed" size="sm">
+        {' '}
+        Upgrade to unlock a full suite of PDF tools for all your needs.{' '}
+      </Text>
+      <Stack mt="md">
+        <Button variant="default" fullWidth>
+          Split PDF
+        </Button>
+        <Button variant="default" fullWidth>
+          Compress PDF
+        </Button>
+        <Button variant="default" fullWidth>
+          Rotate Pages
+        </Button>
+      </Stack>
+    </Stack>
+  </Card>
+)
+
+const FeatureMockupSecureProcessing = () => (
+  <Card withBorder radius="md" p="xl" w={500}>
+    <Stack align="center" ta="center">
+      <ThemeIcon size={60} radius="xl" color="red">
+        <Icon icon="tabler:shield-check" fontSize={40} />
+      </ThemeIcon>
+      <Title order={4} mt="sm">
+        100% Private & Secure
+      </Title>
+      <Text c="dimmed" size="sm">
+        {' '}
+        Your files are never uploaded to any server. All merging and editing
+        happens locally in your browser, guaranteeing your data's privacy.{' '}
+      </Text>
+    </Stack>
+  </Card>
+)
+
+// --- Reusable Marquee Tile for Feature Details ---
 interface MarqueeTileFeatureDetailProps {
   icon: string
   title: string
   description: string
   featureComponent: React.ReactNode
 }
+
 const MarqueeTileFeatureDetail: React.FC<MarqueeTileFeatureDetailProps> = ({
   icon,
   title,
@@ -352,29 +257,27 @@ const MarqueeTileFeatureDetail: React.FC<MarqueeTileFeatureDetailProps> = ({
     radius="lg"
     p={60}
     style={{
-      // English: Applying the consistent dark theme gradient.
       background: PROMO_GRADIENT_BACKGROUND,
     }}
   >
     <Stack h="100%" justify="center">
-      <Grid align="center" gutter={50}>
-        <Grid.Col span={5}>
+      <Grid align="center">
+        <Grid.Col span={4}>
           <Stack>
-            <ThemeIcon size={60} radius="lg">
-              <Icon icon={icon} fontSize={40} />
+            <ThemeIcon size={90} radius="lg">
+              <Icon icon={icon} fontSize={60} />
             </ThemeIcon>
-            {/* English: [MODIFIED] Font size adjusted and color changed for dark background. */}
-            <Title order={1} fz={44} lh={1.2} c="white">
+            <Title order={1} fz={50} lh={1.2} c="white">
               {' '}
               {title}{' '}
             </Title>
-            <Text size="xl" fw={500} c="gray.1" mt="md">
+            <Title order={2} fw={500} c="gray.1" mt="md">
               {' '}
               {description}{' '}
-            </Text>
+            </Title>
           </Stack>
         </Grid.Col>
-        <Grid.Col span={7}>
+        <Grid.Col span={6}>
           <Center h="100%">{featureComponent}</Center>
         </Grid.Col>
       </Grid>
@@ -383,71 +286,57 @@ const MarqueeTileFeatureDetail: React.FC<MarqueeTileFeatureDetailProps> = ({
 )
 
 const ScreenshotGallery: React.FC = () => {
-  // English: Data for generating promotional assets.
-  // MODIFIED: Removed the small promo tiles as requested.
   const screenshotData = [
     {
       title: 'Marquee Promo Tile: Feature Showcase (1280x800)',
-      filename: 'marquee_promo_tile_features.png',
+      filename: 'marquee_promo_tile_pdf_merge.png',
       component: <MarqueeTileFeatureShowcase />,
     },
     {
-      title: 'Feature Screenshot: Multiple Export Formats (1280x800)',
-      filename: 'feature_export_formats.png',
+      title: 'Feature Screenshot: Main Interface (1280x800)',
+      filename: 'feature_pdf_merge_main_ui.png',
       component: (
         <MarqueeTileFeatureDetail
-          icon="tabler:files"
-          title="Multiple Export Formats"
-          description="Convert your chats into professional PDF, CSV, Excel, JSON, and TXT files for any purpose."
-          featureComponent={<FeatureMockupExportFormats />}
+          icon="tabler:drag-drop"
+          title="Drag, Drop, Merge"
+          description="Combining PDFs is as simple as dragging your files into the window. Our intuitive interface makes it fast and easy."
+          featureComponent={<FeatureMockupPdfMergeUI />}
         />
       ),
     },
     {
-      title: 'Feature Screenshot: Advanced Filtering (1280x800)',
-      filename: 'feature_advanced_filtering.png',
+      title: 'Feature Screenshot: Reorder Pages (1280x800)',
+      filename: 'feature_pdf_merge_reorder_pages.png',
       component: (
         <MarqueeTileFeatureDetail
-          icon="tabler:filter"
-          title="Advanced Filtering"
-          description="Easily find what you need. Filter your exports by custom date ranges or multiple keywords to pinpoint specific messages."
-          featureComponent={<FeatureMockupAdvancedFiltering />}
+          icon="tabler:arrows-sort"
+          title="Organize With Ease"
+          description="Easily reorder pages from all your uploaded documents into a single, perfectly arranged file before you merge."
+          featureComponent={<FeatureMockupReorderPages />}
         />
       ),
     },
     {
-      title: 'Feature Screenshot: Media Backups (1280x800)',
-      filename: 'feature_media_backups.png',
+      title: 'Feature Screenshot: Pro Tools (1280x800)',
+      filename: 'feature_pdf_merge_pro_tools.png',
       component: (
         <MarqueeTileFeatureDetail
-          icon="tabler:photo-video"
-          title="Save Your Media"
-          description="Don’t just save text. The Pro version allows you to back up and include all media types in your exports."
-          featureComponent={<FeatureMockupMediaBackup />}
+          icon="tabler:sparkles"
+          title="Powerful Pro Tools"
+          description="Upgrade to unlock advanced features like PDF splitting, compression to reduce file size, page rotation, and more."
+          featureComponent={<FeatureMockupExtraTools />}
         />
       ),
     },
     {
-      title: 'Feature Screenshot: Privacy First (1280x800)',
-      filename: 'feature_privacy_secure.png',
+      title: 'Feature Screenshot: Security First (1280x800)',
+      filename: 'feature_pdf_merge_security.png',
       component: (
         <MarqueeTileFeatureDetail
           icon="tabler:shield-lock"
-          title="Your Privacy is Our Priority"
-          description="This extension operates 100% locally on your computer. Your messages and media are never uploaded to any server, ensuring complete privacy."
-          featureComponent={<FeatureMockupPrivacy />}
-        />
-      ),
-    },
-    {
-      title: 'Feature Screenshot: Simple Interface (1280x800)',
-      filename: 'feature_simple_interface.png',
-      component: (
-        <MarqueeTileFeatureDetail
-          icon="tabler:mouse"
-          title="Easy-to-Use Interface"
-          description="A clean and straightforward design allows you to back up your important chats in just a few clicks. No complicated steps."
-          featureComponent={<FeatureMockupSimpleInterface />}
+          title="Completely Secure & Private"
+          description="Your files are never sent over the internet. All processing happens locally on your computer, ensuring your data remains yours."
+          featureComponent={<FeatureMockupSecureProcessing />}
         />
       ),
     },
@@ -475,103 +364,65 @@ const ScreenshotGallery: React.FC = () => {
   )
 }
 
-// --- End of Embedded Screenshot Components ---
-
 const ResourcePage = () => {
-  // English: A single ref for the promotional icon.
-  const iconRef = useRef<HTMLDivElement>(null)
-
-  // English: Defines the data for the single icon option to be mapped in the UI.
-  // MODIFIED: Reduced to a single, preferred icon.
-  const icons = [
-    {
-      component: <PromoIcon size={128} icon={PRIMARY_ICON} />,
-      ref: iconRef,
-      name: 'promotional_icon.png',
-    },
-  ]
-
   const storeListingText = {
     titles: [
-      'Backup & Export for WhatsApp',
-      'WhatsApp Chat Exporter & Saver',
-      'Secure WhatsApp Chat Backup',
+      'PDF Merge - Combine & Edit PDFs',
+      'Simple PDF Merger & Toolkit',
+      'Merge PDF Files Offline',
     ],
     shortDescriptions: [
-      'Securely back up and export your WhatsApp chats to PDF, Excel, CSV, and more formats right from your computer.',
-      'One-click tool to save your WhatsApp chat history. Export conversations and media to PDF, Excel, or CSV locally & privately.',
-      'Never lose your chat history. Archive any WhatsApp conversation with media into multiple file formats. 100% secure & private.',
+      'The easiest way to merge multiple PDF files into one. Drag, drop, reorder, and compress securely in your browser. No server uploads.',
+      'Combine unlimited PDF documents with a simple drag-and-drop interface. Works offline for 100% privacy and security.',
+      'Stop using slow websites. Merge, split, and compress your PDFs instantly and securely right from your browser.',
     ],
-    // MODIFIED: Emojis have been re-added to the long description for better visual appeal.
-    longDescription: `🛡️ Secure Your WhatsApp Conversations Forever
-
-Never lose important conversations or precious memories again. WhatsBackup - WA Chats Backup & Exporter for WhatsApp is the ultimate tool for archiving your WhatsApp chats securely and easily. With a single click, convert your chat history into professional, organized files like PDF, Excel, and CSV, all processed 100% locally on your computer for maximum privacy.
+    longDescription: `⚙️ The Easiest Way to Manage Your PDFs
+Tired of juggling multiple PDF files? With PDF Merge & Toolkit, you can combine countless PDF documents into a single, organized file with just a few clicks. Best of all, it works entirely offline, right in your browser, ensuring your documents are always secure and private.
 
 ✨ Key Features
-💾 Unlimited Backups: Archive entire conversations with no message limits.
-🖼️ Include Media: Save photos, videos, voice notes, and documents.
-📄 Multiple Export Formats: Export to PDF, Excel (XLSX), CSV, JSON, HTML, and TXT.
-🔍 Advanced Filtering: Pinpoint messages with custom date ranges and keyword searches.
-🔐 100% Secure: Your data never leaves your computer.
+- **Effortless Merging**: Simply drag and drop all the PDF files you want to combine.
+- **Page Organization**: Easily reorder or delete pages from any of the uploaded files before you merge them.
+- **100% Secure & Private**: Your files are never uploaded to a server. All processing happens locally on your own computer. Your privacy is guaranteed.
+- **Fast & Lightweight**: No more waiting for files to upload or download. Merging is almost instantaneous.
+- **No File Limits**: Merge as many files as you need, with no restrictions on the number of documents or total file size.
 
-🔒 Your Privacy is Our Priority
-We believe you should have complete control over your data. This extension operates entirely within your browser.
-✅ Your messages and media are never uploaded to any server.
-✅ The entire backup process happens on your own machine.
-✅ Your conversations remain private and secure, always.
+🚀 Pro Features - Unlock the Full Toolkit!
+Upgrade to Pro for a complete set of PDF tools:
+- **Split PDF**: Extract specific pages or page ranges from a PDF.
+- **Compress PDF**: Reduce the file size of your PDFs to make them easier to email and store.
+- **Rotate Pages**: Quickly fix the orientation of individual pages.
+- **Unlimited Access**: Get lifetime access to all current and future tools with a single purchase.
 
 🤔 Who Is This For?
-💼 Professionals: Archive client communications for record-keeping or legal compliance.
-❤️ Individuals: Save precious conversations with family and friends forever.
-🔬 Researchers: Export chat data into structured formats like CSV or JSON for analysis.
-🙋‍♀️ Anyone who values their data: Protect yourself from accidental data loss from a lost or broken phone.
+- **Students & Researchers**: Combine lecture notes, research papers, and assignments into one document.
+- **Business Professionals**: Merge reports, invoices, and contracts for easy sharing and archiving.
+- **Legal & Administrative Staff**: Consolidate case files, forms, and official documents securely.
+- **Anyone Needing to Organize PDFs**: A simple tool for anyone who wants to declutter their digital documents.
 
-🚀 Get peace of mind knowing your WhatsApp history is safe, secure, and accessible in any format you need.
-
-WhatsApp is a trademark of WhatsApp Inc., registered in the U.S. and other countries. This extension has no relationship to WhatsApp or WhatsApp Inc.`,
+Upgrade your workflow today. Stop relying on insecure online tools and take control of your documents!`,
   }
 
-  // English: Added justification texts for the new Privacy tab.
   const justificationTexts = {
-    singlePurpose: `The core purpose of this extension is to provide users with a secure and private way to back up their WhatsApp chats and export them into various file formats (PDF, CSV, Excel, etc.). All features, including chat selection, date filtering, keyword searching, and format conversion, are directly related to this single purpose of creating local, user-controlled backups of their WhatsApp data.`,
-    storage: `The 'storage' permission is used to store essential user settings and license information locally on the user's device. This includes:
-- The user's license key to unlock Pro features.
-- An instance ID for license activation management.
-- User preferences, such as default export settings.
-This data is stored only on the user's computer and is crucial for providing a persistent and personalized experience without requiring a remote server or user accounts.`,
-    scripting: `Content scripts are essential for the extension's functionality. They are used exclusively on web.whatsapp.com to:
-1. Inject the user interface (the main modal for backup options) onto the page, allowing users to interact with the extension directly within the WhatsApp Web environment.
-2. Communicate with the WhatsApp Web application's JavaScript context to securely fetch chat and message data for the backup process. This data is handled locally and is necessary to fulfill the extension's core purpose of exporting chats.`,
-    hostWhatsapp: `The permission for "https://web.whatsapp.com/*" is required to allow the extension's content scripts to run on WhatsApp Web. The extension needs to access the DOM and interact with the page to inject its UI and retrieve chat data for the user to back up. The extension's functionality is entirely dependent on its ability to operate on this specific domain.`,
-    hostLemonSqueezy: `The permission for "https://api.lemonsqueezy.com/*" is used to securely communicate with the Lemon Squeezy API for license validation and management. When a user activates a Pro license, the extension sends a request to this domain to verify, activate, or deactivate the license key. This is a standard and secure method for handling software licensing and does not transmit any personal chat data.`,
+    singlePurpose: `The extension's single purpose is to provide users with tools to manage PDF files directly in their browser. All features—including merging multiple files, reordering pages, splitting documents, and compressing files—are directly tied to this core function of offline PDF manipulation.`,
+    storage: `The 'storage' permission is used to locally store user settings and license information. This includes the user's license key for Pro features and an instance ID for license management. This data is kept on the user's device to ensure a consistent experience without needing a remote server.`,
+    scripting: `Content scripts are essential for the extension's functionality, allowing it to provide a seamless user experience for file handling and processing within the browser environment.`,
   }
 
   const keywords = [
-    'WhatsApp backup',
-    'export chat',
-    'PDF converter',
-    'save WhatsApp',
-    'WhatsApp archive',
-    'Excel export',
-    'download whatsapp chat',
-    'whatsapp to pdf',
-    'whatsapp to excel',
-    'chat history',
+    'merge pdf',
+    'combine pdf',
+    'pdf joiner',
+    'pdf merger',
+    'offline pdf tool',
+    'secure pdf merge',
+    'split pdf',
+    'compress pdf',
+    'pdf editor extension',
+    'pdf utility',
+    'combine pdf files',
+    'pdf toolkit',
   ]
   const keywordsString = keywords.join(', ')
-
-  const handleDownloadIcon = async (
-    ref: React.RefObject<HTMLDivElement>,
-    filename: string,
-  ) => {
-    if (!ref.current) return
-    const canvas = await html2canvas(ref.current, {
-      backgroundColor: null,
-    })
-    canvas.toBlob((blob) => {
-      if (blob) FileSaver.saveAs(blob, filename)
-    })
-  }
   return (
     <MantineProvider theme={theme}>
       <Container size="lg" py="xl">
@@ -614,7 +465,6 @@ This data is stored only on the user's computer and is crucial for providing a p
                 {' '}
                 Keywords (SEO){' '}
               </Tabs.Tab>
-              {/* ADDED: New tab for privacy justifications. */}
               <Tabs.Tab
                 value="privacy"
                 leftSection={<Icon icon="tabler:shield-lock" />}
@@ -623,7 +473,6 @@ This data is stored only on the user's computer and is crucial for providing a p
                 Privacy Justifications{' '}
               </Tabs.Tab>
             </Tabs.List>
-
             <Tabs.Panel value="text" pt="lg">
               <Stack gap="xl">
                 <Stack>
@@ -722,26 +571,23 @@ This data is stored only on the user's computer and is crucial for providing a p
                 </Card>
               </Stack>
             </Tabs.Panel>
-            {/* MODIFIED: The layout is simplified and centered for a single icon. */}
             <Tabs.Panel value="icons" pt="lg">
               <Center>
-                <Card withBorder radius="md" p="xl" w={300}>
-                  <Stack align="center" justify="space-between">
-                    <div ref={iconRef}>{icons[0].component}</div>
-                    <Stack align="center" gap="md" mt="md">
-                      <Text fw={500}>Promotional Icon (128x128 px)</Text>
-                      <Button
-                        variant="light"
-                        onClick={() =>
-                          handleDownloadIcon(icons[0].ref, icons[0].name)
-                        }
-                      >
-                        {' '}
-                        Download{' '}
-                      </Button>
-                    </Stack>
-                  </Stack>
-                </Card>
+                <ScreenshotWrapper
+                  title="Promotional Icon (128x128)"
+                  filename="icon_128.png"
+                >
+                  {/* Pastikan PromoIcon dapat menerima props gradient. */}
+                  {/* Jika PromoIcon tidak memiliki implementasi untuk 'gradient',
+                      maka perubahan ini tidak akan berpengaruh secara visual.
+                      Anda mungkin perlu memodifikasi file PromoIcon.tsx
+                      untuk mendukung props ini. */}
+                  <PromoIcon
+                    size={128}
+                    icon={'tabler:file-stack'}
+                    gradient={{ from: 'red', to: 'orange' }}
+                  />
+                </ScreenshotWrapper>
               </Center>
             </Tabs.Panel>
             <Tabs.Panel value="screenshots" pt="lg">
@@ -787,7 +633,6 @@ This data is stored only on the user's computer and is crucial for providing a p
                 </Paper>
               </Card>
             </Tabs.Panel>
-            {/* ADDED: New panel with privacy justification content. */}
             <Tabs.Panel value="privacy" pt="lg">
               <Stack gap="xl">
                 <Card withBorder radius="md">
@@ -800,7 +645,8 @@ This data is stored only on the user's computer and is crucial for providing a p
                           color={copied ? 'teal' : 'gray'}
                           onClick={copy}
                         >
-                          {copied ? 'Copied' : 'Copy'}
+                          {' '}
+                          {copied ? 'Copied' : 'Copy'}{' '}
                         </Button>
                       )}
                     </CopyButton>
@@ -823,7 +669,8 @@ This data is stored only on the user's computer and is crucial for providing a p
                           color={copied ? 'teal' : 'gray'}
                           onClick={copy}
                         >
-                          {copied ? 'Copied' : 'Copy'}
+                          {' '}
+                          {copied ? 'Copied' : 'Copy'}{' '}
                         </Button>
                       )}
                     </CopyButton>
@@ -846,7 +693,8 @@ This data is stored only on the user's computer and is crucial for providing a p
                           color={copied ? 'teal' : 'gray'}
                           onClick={copy}
                         >
-                          {copied ? 'Copied' : 'Copy'}
+                          {' '}
+                          {copied ? 'Copied' : 'Copy'}{' '}
                         </Button>
                       )}
                     </CopyButton>
@@ -859,56 +707,6 @@ This data is stored only on the user's computer and is crucial for providing a p
                     minRows={5}
                   />
                 </Card>
-                <Card withBorder radius="md">
-                  <Group justify="space-between">
-                    <Title order={4}>
-                      Host Permission: https://web.whatsapp.com/*
-                    </Title>
-                    <CopyButton value={justificationTexts.hostWhatsapp}>
-                      {({ copied, copy }) => (
-                        <Button
-                          size="xs"
-                          color={copied ? 'teal' : 'gray'}
-                          onClick={copy}
-                        >
-                          {copied ? 'Copied' : 'Copy'}
-                        </Button>
-                      )}
-                    </CopyButton>
-                  </Group>
-                  <Textarea
-                    mt="sm"
-                    readOnly
-                    value={justificationTexts.hostWhatsapp}
-                    autosize
-                    minRows={4}
-                  />
-                </Card>
-                <Card withBorder radius="md">
-                  <Group justify="space-between">
-                    <Title order={4}>
-                      Host Permission: https://api.lemonsqueezy.com/*
-                    </Title>
-                    <CopyButton value={justificationTexts.hostLemonSqueezy}>
-                      {({ copied, copy }) => (
-                        <Button
-                          size="xs"
-                          color={copied ? 'teal' : 'gray'}
-                          onClick={copy}
-                        >
-                          {copied ? 'Copied' : 'Copy'}
-                        </Button>
-                      )}
-                    </CopyButton>
-                  </Group>
-                  <Textarea
-                    mt="sm"
-                    readOnly
-                    value={justificationTexts.hostLemonSqueezy}
-                    autosize
-                    minRows={4}
-                  />
-                </Card>
               </Stack>
             </Tabs.Panel>
           </Tabs>
@@ -917,5 +715,4 @@ This data is stored only on the user's computer and is crucial for providing a p
     </MantineProvider>
   )
 }
-
 export default ResourcePage

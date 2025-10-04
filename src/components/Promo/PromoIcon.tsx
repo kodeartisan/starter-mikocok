@@ -1,27 +1,19 @@
-// English: A simple, professional icon wrapper for branding.
-// This component is reusable for generating different icon sizes and types.
+// Contoh PromoIcon.tsx (setelah perubahan)
 import { Icon } from '@iconify/react'
 import { ThemeIcon } from '@mantine/core'
-import React from 'react'
 
-interface Props {
-  size: number
-  icon: string
-}
-
-const PromoIcon: React.FC<Props> = ({ size, icon }) => {
+const PromoIcon = ({ size, icon, gradient }) => {
+  // Tambahkan 'gradient' ke props
   return (
     <ThemeIcon
-      variant="gradient"
-      gradient={{ from: 'teal', to: 'lime' }}
-      radius={100}
       size={size}
+      radius="xl"
+      variant="gradient"
+      gradient={gradient || { from: 'blue', to: 'cyan' }}
     >
-      {/* Use the Icon component for dynamic icon rendering */}
-      <Icon
-        icon={icon}
-        style={{ width: '70%', height: '70%', color: 'white' }}
-      />
+      {' '}
+      {/* Gunakan gradient yang diteruskan, atau default */}
+      <Icon icon={icon} fontSize={size * 0.7} />
     </ThemeIcon>
   )
 }
